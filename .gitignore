@@ -4,8 +4,8 @@
 *.build/
 *.onefile-build/
 !main.exe
-*.py
-*.pyw
+# *.py
+# *.pyw
 !main.pyw
 !ball.py
 !paddle.py
