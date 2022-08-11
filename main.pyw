@@ -1,4 +1,5 @@
 import pygame as pg
+from paddle import Paddle
 
 pg.init()
 
@@ -17,6 +18,17 @@ lives = 3
 screen = pg.display.set_mode((800,600))
 pg.display.set_caption('Breakout Game')
 
+
+#sprites
+
+asl = pg.sprite.Group()
+
+paddle = Paddle(LIGHTBLUE,100,10)
+paddle.rect.x = 350
+paddle.rect.y = 560
+
+asl.add(paddle)
+
 carryon = True
 
 clock = pg.time.Clock()
@@ -31,6 +43,7 @@ while carryon:
 
 
     #game logic
+    asl.update()
 
 
     #drawing code
@@ -39,14 +52,19 @@ while carryon:
 
     #display score and lives
 
-    font = pg.font.Font(None, 34)
+    font = pg.font.Font('freesansbold.ttf', 34)
     text = font.render("Score: " + str(score), 1, WHITE)
-    screen.blit(text, (20,10))
+    screen.blit(text, (20,5))
     text = font.render("Lives: " + str(lives), 1, WHITE)
-    screen.blit(text, (650,10))
+    screen.blit(text, (650,5))
+
+    #draw sprites
+    asl.draw(screen)
 
 
+    #update screen
     pg.display.flip()
+
 
     clock.tick(60)
 
